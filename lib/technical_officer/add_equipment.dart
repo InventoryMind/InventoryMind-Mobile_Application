@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
-import '../barcode_generator.dart';
+import 'to_widgets/barcode_generator.dart';
 import '../constants.dart';
 
 class AddEquipment extends StatefulWidget {
@@ -23,55 +22,52 @@ class _AddEquipmentState extends State<AddEquipment> {
     return Scaffold(
       drawer: TONavigationDrawer(),
       appBar: getAppBar("Add Equipment"),
-      body: Container(
-        margin: EdgeInsets.all(20),
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            inputTextField(_nameCont, "Name of the Equipment"),
-            SizedBox(height: 30.0),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: DropdownButton(
-                value: _eqType,
-                hint: Text("Equipment Type"),
-                items: _eqTypes.map((val) {
-                  return DropdownMenuItem(value: val, child: Text(val));
-                }).toList(),
-                onChanged: (val) {
-                  setState(() => _eqType = val.toString());
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              inputTextField(_nameCont, "Name of the Equipment"),
+              SizedBox(height: 30.0),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: DropdownButton(
+                  value: _eqType,
+                  hint: Text("Equipment Type"),
+                  items: _eqTypes.map((val) {
+                    return DropdownMenuItem(value: val, child: Text(val));
+                  }).toList(),
+                  onChanged: (val) {
+                    setState(() => _eqType = val.toString());
+                  },
+                  isExpanded: true,
+                  underline: Container(),
+                ),
+                decoration: BoxDecoration(
+                  color: kSecondaryColor,
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+              ),
+              SizedBox(height: 30.0),
+              ElevatedButton(
+                child: Text("Add Equipment"),
+                style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
+                onPressed: () {
+                  setState(() {
+                    _barcode = "180652A";
+                  });
                 },
-                isExpanded: true,
-                underline: Container(),
               ),
-              decoration: BoxDecoration(
-                color: kSecondaryColor,
-                border: Border.all(color: Colors.grey, width: 1),
-                borderRadius: BorderRadius.circular(100.0),
-              ),
-            ),
-            SizedBox(height: 30.0),
-            ElevatedButton(
-              child: Text("Generate Barcode"),
-              style: ElevatedButton.styleFrom(primary: Colors.blue[800]),
-              onPressed: () {
-                setState(() {
-                  _barcode = "180652A";
-                });
-              },
-            ),
-            SizedBox(height: 30.0),
-            _barcode == null
-                ? Container()
-                : BarcodeGenerator(_barcode.toString()),
-          ],
+              SizedBox(height: 30.0),
+              _barcode == null
+                  ? Container()
+                  : BarcodeGenerator(barcode: _barcode.toString()),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-// final dm = Barcode.dataMatrix();
-// final svg =
-// Barcode.code39().toSvg("180652A", width: 200, height: 200);
-// await File('/assets/barcode.svg').writeAsString(svg);

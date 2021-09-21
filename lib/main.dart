@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/request_details.dart';
+import 'package:inventory_mind/student/borrowing_request.dart';
+import 'package:inventory_mind/student/temporary_borrowing.dart';
+import 'package:inventory_mind/technical_officer/accept_return.dart';
 import 'package:inventory_mind/technical_officer/add_equipment.dart';
+import 'package:inventory_mind/technical_officer/remove_equipment.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
+import 'package:inventory_mind/technical_officer/transfer_equipment.dart';
 import 'constants.dart';
 import 'lecturer/accepted_requests.dart';
 import 'lecturer/pending_requests.dart';
@@ -20,7 +25,7 @@ class MyApp extends StatelessWidget {
         // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
         //     .apply(bodyColor: Colors.white),
       ),
-      home: AddEquipment(),
+      home: BorrowingRequest(),
       // routes: {
       //   "/": (context) => LecturerDashboard(),
       //   "/lecturer/pending_requests": (context) => PendingRequests(),
