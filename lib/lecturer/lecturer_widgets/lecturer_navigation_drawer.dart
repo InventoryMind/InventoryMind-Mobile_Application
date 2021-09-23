@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/accepted_requests.dart';
 import 'package:inventory_mind/lecturer/pending_requests.dart';
+import 'package:inventory_mind/lecturer/rejected_requests.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
+
+import '../../login.dart';
 
 class LecturerNavigationDrawer extends StatelessWidget {
   const LecturerNavigationDrawer({Key? key}) : super(key: key);
@@ -14,18 +17,28 @@ class LecturerNavigationDrawer extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text("User ID : 180652A", style: TextStyle(fontSize: 16)),
+              title: Center(
+                  child: Text("InventoryMind", style: TextStyle(fontSize: 16))),
+              subtitle: Center(child: Text("Inventory Management System")),
             ),
             Divider(thickness: 2),
             buildNavItem(
                 "Pending Requests", Icons.pending, context, PendingRequests()),
-            buildNavItem("Accepted Requests", Icons.check_circle, context,
+            buildNavItem("Approved Requests", Icons.check_circle, context,
                 AcceptedRequests()),
-            // _buildNavItem("Rejected Requests", Icons.cancel),
-            // Divider(thickness: 2),
-            // _buildNavItem("Change Password", Icons.password),
-            // _buildNavItem("Logout", Icons.login_outlined),
+            buildNavItem(
+                "Rejected Requests", Icons.cancel, context, RejectedRequests()),
+            Divider(thickness: 2),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout", style: TextStyle(fontSize: 16)),
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+            SizedBox(height: 20),
+            Center(child: Text("v 1.0.0 © 2021 | UoM CSE")),
           ],
         ),
       ),

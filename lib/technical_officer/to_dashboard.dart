@@ -1,18 +1,32 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
+import 'package:inventory_mind/technical_officer/to_widgets/to_pie_chart_container.dart';
 import 'package:inventory_mind/widgets/calendar.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/urls.dart';
+import 'package:http/http.dart';
+import '../constants.dart';
 
 class TODashboard extends StatefulWidget {
-  const TODashboard({Key? key}) : super(key: key);
-
   @override
   _TODashboardState createState() => _TODashboardState();
 }
 
 class _TODashboardState extends State<TODashboard> {
+  bool _loading = false;
+
+  @override
+  Future<void> initState() async {
+    super.initState();
+    Response response = await get(Uri.parse(toDashURL),
+        headers: {"cookie": "auth-token=" + kTOToken});
+    Map resBody = jsonDecode(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
+    print("build");
     return Scaffold(
       drawer: TONavigationDrawer(),
       appBar: getAppBar("Dashboard"),
@@ -20,12 +34,7 @@ class _TODashboardState extends State<TODashboard> {
         child: Column(
           children: [
             Calender(),
-            // LecturerPieChartContainer(),
-            //   ElevatedButton(
-            //     child: Text("Scan Barcode"),
-            //     onPressed: () => _scanBarcode(),
-            //   ),
-            //   Text(_code),
+            TOPieChartContainer(),
           ],
         ),
       ),

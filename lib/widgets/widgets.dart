@@ -21,8 +21,7 @@ Widget buildNavItem(
     leading: Icon(icon),
     title: Text(title, style: TextStyle(fontSize: 16)),
     onTap: () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => widget));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
     },
   );
 }
@@ -34,10 +33,12 @@ RoundedRectangleBorder lecturerRequestsCardBorder() {
   );
 }
 
-IconButton lecturerRequestsListTieIcon() {
+IconButton lecturerRequestsListTieIcon(BuildContext context, Widget widget) {
   return IconButton(
     icon: Icon(Icons.remove_red_eye_rounded),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
+    },
   );
 }
 

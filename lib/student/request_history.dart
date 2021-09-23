@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/lecturer_widgets/lecturer_navigation_drawer.dart';
 import 'package:inventory_mind/lecturer/request_details.dart';
+import 'package:inventory_mind/student/stu_request_details.dart';
+import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
-class PendingRequests extends StatefulWidget {
-  const PendingRequests({Key? key}) : super(key: key);
+class RequestHistory extends StatefulWidget {
+  const RequestHistory({Key? key}) : super(key: key);
 
   @override
-  _PendingRequestsState createState() => _PendingRequestsState();
+  _RequestHistoryState createState() => _RequestHistoryState();
 }
 
-class _PendingRequestsState extends State<PendingRequests> {
+class _RequestHistoryState extends State<RequestHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: LecturerNavigationDrawer(),
-      appBar: getAppBar("Pending Requests"),
+      drawer: StudentNavigationDrawer(),
+      appBar: getAppBar("Request History"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 5,
@@ -30,7 +32,8 @@ class _PendingRequestsState extends State<PendingRequests> {
               ),
               title: Text("Borrowing : 2021/10/10"),
               subtitle: Text("Returning : 2021/10/15"),
-              trailing: lecturerRequestsListTieIcon(context, RequestDetails()),
+              trailing:
+                  lecturerRequestsListTieIcon(context, StuRequestDetails()),
             ),
           );
         },

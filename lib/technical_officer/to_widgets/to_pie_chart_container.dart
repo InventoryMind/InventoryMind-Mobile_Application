@@ -2,25 +2,37 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 
-class LecturerPieChartContainer extends StatelessWidget {
+class TOPieChartContainer extends StatelessWidget {
   final List<PieChartSectionData> _pieChartSectionData = [
     PieChartSectionData(
       value: 10,
-      color: Colors.blue,
+      color: Colors.yellow,
       showTitle: false,
-      radius: 35,
     ),
     PieChartSectionData(
       value: 12,
-      color: Colors.green,
+      color: Colors.deepOrange,
       showTitle: false,
-      radius: 32,
     ),
     PieChartSectionData(
       value: 5,
       color: Colors.red,
       showTitle: false,
-      radius: 29,
+    ),
+    PieChartSectionData(
+      value: 5,
+      color: Colors.purpleAccent,
+      showTitle: false,
+    ),
+    PieChartSectionData(
+      value: 5,
+      color: Colors.blue,
+      showTitle: false,
+    ),
+    PieChartSectionData(
+      value: 5,
+      color: Colors.green,
+      showTitle: false,
     ),
   ];
 
@@ -52,7 +64,7 @@ class LecturerPieChartContainer extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Request Details",
+            "Equipment Details",
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 20,
@@ -70,10 +82,16 @@ class LecturerPieChartContainer extends StatelessWidget {
             ),
           ),
           _requestDetailCard(
-              Icons.pending, Colors.blue, "Pending Requests", 20),
+              Icons.check_circle, Colors.green, "Available Equipment", 10),
           _requestDetailCard(
-              Icons.check_circle, Colors.green, "Approved Requests", 10),
-          _requestDetailCard(Icons.cancel, Colors.red, "Rejected Requests", 5),
+              Icons.timelapse_rounded, Colors.blue, "Requested Equipment", 10),
+          _requestDetailCard(Icons.refresh_rounded, Colors.deepOrange,
+              "Temporarily Borrowed", 10),
+          _requestDetailCard(
+              Icons.forward, Colors.purpleAccent, "Borrowed Equipment", 10),
+          _requestDetailCard(Icons.report_problem_rounded, Colors.yellow,
+              "Not Usable Equipment", 20),
+          _requestDetailCard(Icons.cancel, Colors.red, "Removed Equipment", 5),
         ],
       ),
     );

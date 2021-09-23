@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
-class RequestDetails extends StatelessWidget {
-  const RequestDetails({Key? key}) : super(key: key);
+class BorrowingDetails extends StatelessWidget {
+  const BorrowingDetails({Key? key}) : super(key: key);
 
   Widget _detailedCard(IconData icon, String title, String subtitle) {
     return Card(
@@ -61,18 +61,17 @@ class RequestDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar("Request Details"),
+      appBar: getAppBar("Borrowing Details"),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
-            _detailedCard(Icons.code, "96587", "Request ID"),
-            _detailedCard(Icons.person, "Pasindu Udawatta", "Student's Name"),
+            _detailedCard(Icons.code, "96587", "Borrow ID"),
             _detailedCard(
-                Icons.account_circle_outlined, "180652A", "Index No."),
+                Icons.category, "Temporary Borrowing", "Borrowing Type"),
             _detailedCard(Icons.next_plan, "2021/10/10", "Date of Borrowing"),
             _detailedCard(
-                Icons.keyboard_return, "2021/10/15", "Date of Returning"),
+                Icons.stacked_bar_chart, "Returned", "Borrowing Status"),
             _detailedCard(Icons.comment, "For a Guest Lecture", "Reason"),
             Card(
               child: ListTile(
@@ -83,25 +82,6 @@ class RequestDetails extends StatelessWidget {
                   child: Text("Equipment Details"),
                   margin: EdgeInsets.only(bottom: 10),
                 ),
-              ),
-            ),
-            ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.check_circle_outline),
-                    label: Text("Approve"),
-                    style: ElevatedButton.styleFrom(primary: Colors.green),
-                    onPressed: () {},
-                  ),
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.block),
-                    label: Text("Reject"),
-                    style: ElevatedButton.styleFrom(primary: Colors.red),
-                    onPressed: () {},
-                  ),
-                ],
               ),
             ),
           ],

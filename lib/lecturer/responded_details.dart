@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
-class RequestDetails extends StatelessWidget {
-  const RequestDetails({Key? key}) : super(key: key);
+class RespondedDetails extends StatelessWidget {
+  const RespondedDetails({Key? key}) : super(key: key);
 
   Widget _detailedCard(IconData icon, String title, String subtitle) {
     return Card(
@@ -83,25 +83,6 @@ class RequestDetails extends StatelessWidget {
                   child: Text("Equipment Details"),
                   margin: EdgeInsets.only(bottom: 10),
                 ),
-              ),
-            ),
-            ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.check_circle_outline),
-                    label: Text("Approve"),
-                    style: ElevatedButton.styleFrom(primary: Colors.green),
-                    onPressed: () {},
-                  ),
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.block),
-                    label: Text("Reject"),
-                    style: ElevatedButton.styleFrom(primary: Colors.red),
-                    onPressed: () {},
-                  ),
-                ],
               ),
             ),
           ],

@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.inventory_mind">
    <application
-        android:label="inventory_mind"
-        android:icon="@mipmap/ic_launcher">
+        android:label="InventoryMind"
+        android:icon="@mipmap/inventorymind_logo">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

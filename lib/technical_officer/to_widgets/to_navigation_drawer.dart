@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/login.dart';
 import 'package:inventory_mind/technical_officer/accept_return.dart';
 import 'package:inventory_mind/technical_officer/add_equipment.dart';
 import 'package:inventory_mind/technical_officer/remove_equipment.dart';
@@ -17,8 +18,9 @@ class TONavigationDrawer extends StatelessWidget {
         child: ListView(
           children: [
             ListTile(
-              leading: Icon(Icons.person),
-              title: Text("User ID : 180652A", style: TextStyle(fontSize: 16)),
+              title: Center(
+                  child: Text("InventoryMind", style: TextStyle(fontSize: 16))),
+              subtitle: Center(child: Text("Inventory Management System")),
             ),
             Divider(thickness: 2),
             buildNavItem(
@@ -29,6 +31,17 @@ class TONavigationDrawer extends StatelessWidget {
                 context, TransferEquipment()),
             buildNavItem("Returned Equipment", Icons.assignment_return_rounded,
                 context, AcceptReturn()),
+            Divider(thickness: 2),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text("Logout", style: TextStyle(fontSize: 16)),
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+            SizedBox(height: 20),
+            Center(child: Text("v 1.0.0 © 2021 | UoM CSE")),
           ],
         ),
       ),
