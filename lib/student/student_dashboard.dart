@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/student/stu_request_details.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/calendar.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
@@ -19,7 +20,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentNavigationDrawer(),
-      appBar: getAppBar("Dashboard"),
+      appBar: getAppBar(context, "Dashboard"),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -69,7 +70,13 @@ class _StudentDashboardState extends State<StudentDashboard> {
                                 trailing: IconButton(
                                   splashColor: Colors.blue,
                                   icon: Icon(Icons.remove_red_eye_rounded),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                StuRequestDetails()));
+                                  },
                                 ),
                               ),
                             );

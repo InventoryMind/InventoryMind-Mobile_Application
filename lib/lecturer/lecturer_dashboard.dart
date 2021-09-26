@@ -9,7 +9,7 @@ class LecturerDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: LecturerNavigationDrawer(),
-      appBar: getAppBar("Dashboard"),
+      appBar: getAppBar(context, "Dashboard"),
       body: SingleChildScrollView(
         child: Column(
           children: [

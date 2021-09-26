@@ -11,7 +11,7 @@ class RejectedRequests extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: LecturerNavigationDrawer(),
-      appBar: getAppBar("Rejected Requests"),
+      appBar: getAppBar(context, "Rejected Requests"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 3,

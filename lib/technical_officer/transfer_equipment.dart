@@ -34,7 +34,7 @@ class _TransferEquipmentState extends State<TransferEquipment> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: TONavigationDrawer(),
-      appBar: getAppBar("Transfer Equipment"),
+      appBar: getAppBar(context, "Transfer Equipment"),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         padding: EdgeInsets.symmetric(horizontal: 20),

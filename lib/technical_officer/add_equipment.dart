@@ -21,7 +21,7 @@ class _AddEquipmentState extends State<AddEquipment> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: TONavigationDrawer(),
-      appBar: getAppBar("Add Equipment"),
+      appBar: getAppBar(context, "Add Equipment"),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(20),

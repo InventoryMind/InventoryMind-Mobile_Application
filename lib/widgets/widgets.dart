@@ -1,15 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/constants.dart';
+import 'package:inventory_mind/lecturer/lecturer_dashboard.dart';
+import 'package:inventory_mind/student/student_dashboard.dart';
+import 'package:inventory_mind/technical_officer/to_dashboard.dart';
 import 'package:inventory_mind/widgets/theme_helper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import '../token_role_preferences.dart';
 
 // ----------------------Common ------------------------------------------------
-PreferredSizeWidget getAppBar(String title) {
+PreferredSizeWidget getAppBar(BuildContext context, String title) {
+  String _userRole = TokenRolePreferences.getUserRole();
   return AppBar(
     backgroundColor: kBgColor,
     title: Text(title),
     actions: [
-      Icon(Icons.home),
+      IconButton(
+        icon: Icon(Icons.home),
+        onPressed: () {
+          if (_userRole == "Lecturer") {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => LecturerDashboard()),
+              (route) => false,
+            );
+          } else if (_userRole == "Student") {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => StudentDashboard()),
+              (route) => false,
+            );
+          } else if (_userRole == "Technical Officer") {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => TODashboard()),
+              (route) => false,
+            );
+          }
+        },
+      ),
       SizedBox(width: 20),
     ],
   );

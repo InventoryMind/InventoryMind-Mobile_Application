@@ -3,14 +3,14 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
-class RemoveEquipment extends StatefulWidget {
-  const RemoveEquipment({Key? key}) : super(key: key);
+class BarcodeScanner extends StatefulWidget {
+  const BarcodeScanner({Key? key}) : super(key: key);
 
   @override
-  _RemoveEquipmentState createState() => _RemoveEquipmentState();
+  _BarcodeScannerState createState() => _BarcodeScannerState();
 }
 
-class _RemoveEquipmentState extends State<RemoveEquipment> {
+class _BarcodeScannerState extends State<BarcodeScanner> {
   String? _barcode;
   _scanBarcode() async {
     await FlutterBarcodeScanner.scanBarcode(
@@ -26,7 +26,7 @@ class _RemoveEquipmentState extends State<RemoveEquipment> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: TONavigationDrawer(),
-      appBar: getAppBar(context, "Remove Equipment"),
+      appBar: getAppBar(context, "Barcode Scanner"),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -49,15 +49,6 @@ class _RemoveEquipmentState extends State<RemoveEquipment> {
                           border: Border.all(color: Colors.grey, width: 1),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                      ),
-                SizedBox(height: 20.0),
-                _barcode == null
-                    ? Container()
-                    : ElevatedButton(
-                        child: Text("Remove Equipment"),
-                        style:
-                            ElevatedButton.styleFrom(primary: Colors.blue[800]),
-                        onPressed: () {},
                       ),
               ],
             ),

@@ -15,7 +15,7 @@ class _PendingRequestsState extends State<PendingRequests> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: LecturerNavigationDrawer(),
-      appBar: getAppBar("Pending Requests"),
+      appBar: getAppBar(context, "Pending Requests"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 5,

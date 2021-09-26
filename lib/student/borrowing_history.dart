@@ -19,7 +19,7 @@ class _BorrowingHistoryState extends State<BorrowingHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentNavigationDrawer(),
-      appBar: getAppBar("Borrowing History"),
+      appBar: getAppBar(context, "Borrowing History"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 5,

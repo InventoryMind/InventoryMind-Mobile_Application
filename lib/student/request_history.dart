@@ -17,7 +17,7 @@ class _RequestHistoryState extends State<RequestHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentNavigationDrawer(),
-      appBar: getAppBar("Request History"),
+      appBar: getAppBar(context, "Request History"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 5,

@@ -16,20 +16,19 @@ class TODashboard extends StatefulWidget {
 class _TODashboardState extends State<TODashboard> {
   bool _loading = false;
 
-  @override
-  Future<void> initState() async {
-    super.initState();
-    Response response = await get(Uri.parse(toDashURL),
-        headers: {"cookie": "auth-token=" + kTOToken});
-    Map resBody = jsonDecode(response.body);
-  }
+  // @override
+  // Future<void> initState() async {
+  //   super.initState();
+  //   Response response = await get(Uri.parse(toDashURL),
+  //       headers: {"cookie": "auth-token=" + kToken});
+  //   Map resBody = jsonDecode(response.body);
+  // }
 
   @override
   Widget build(BuildContext context) {
-    print("build");
     return Scaffold(
       drawer: TONavigationDrawer(),
-      appBar: getAppBar("Dashboard"),
+      appBar: getAppBar(context, "Dashboard"),
       body: SingleChildScrollView(
         child: Column(
           children: [

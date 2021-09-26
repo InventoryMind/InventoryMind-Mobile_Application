@@ -41,7 +41,7 @@ class _TemporaryBorrowingState extends State<TemporaryBorrowing> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentNavigationDrawer(),
-      appBar: getAppBar("Temporary Borrowing"),
+      appBar: getAppBar(context, "Temporary Borrowing"),
       body: Center(
         child: SingleChildScrollView(
           child: Container(
@@ -91,6 +91,7 @@ class _TemporaryBorrowingState extends State<TemporaryBorrowing> {
                 ),
                 SizedBox(height: 20.0),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Checkbox(
                       checkColor: Colors.white,
@@ -102,7 +103,7 @@ class _TemporaryBorrowingState extends State<TemporaryBorrowing> {
                       },
                     ),
                     Text(
-                        "I will return the equipment on ${_borrowing.year}/${_borrowing.month}/${_borrowing.day}")
+                        "Return Date : ${_borrowing.year}/${_borrowing.month}/${_borrowing.day}")
                   ],
                 ),
                 SizedBox(height: 15.0),

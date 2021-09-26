@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
+import 'lecturer_widgets/lecturer_navigation_drawer.dart';
+
 class RespondedDetails extends StatelessWidget {
   const RespondedDetails({Key? key}) : super(key: key);
 
@@ -61,7 +63,7 @@ class RespondedDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar("Request Details"),
+      appBar: getAppBar(context, "Request Details"),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(

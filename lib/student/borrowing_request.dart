@@ -48,7 +48,7 @@ class _BorrowingRequestState extends State<BorrowingRequest> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: StudentNavigationDrawer(),
-      appBar: getAppBar("Borrowing Request"),
+      appBar: getAppBar(context, "Borrowing Request"),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.fromLTRB(20, 10, 20, 20),

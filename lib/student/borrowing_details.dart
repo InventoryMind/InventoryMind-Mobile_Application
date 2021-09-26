@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
 
 class BorrowingDetails extends StatelessWidget {
@@ -61,7 +62,7 @@ class BorrowingDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getAppBar("Borrowing Details"),
+      appBar: getAppBar(context, "Borrowing Details"),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(

@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:inventory_mind/student/borrowing_history.dart';
 import 'package:inventory_mind/student/borrowing_request.dart';
 import 'package:inventory_mind/student/request_history.dart';
 import 'package:inventory_mind/student/temporary_borrowing.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:convert';
 import '../../login.dart';
+import '../../profile_page.dart';
+import '../../token_role_preferences.dart';
+import '../../urls.dart';
 
 class StudentNavigationDrawer extends StatelessWidget {
   const StudentNavigationDrawer({Key? key}) : super(key: key);
@@ -32,12 +38,41 @@ class StudentNavigationDrawer extends StatelessWidget {
             buildNavItem("Borrowing History", Icons.format_list_bulleted,
                 context, BorrowingHistory()),
             Divider(thickness: 2),
+            buildNavItem(
+                "Profile Page", Icons.account_circle, context, ProfilePage()),
+            ListTile(
+              leading: Icon(Icons.password),
+              title: Text("Change Password", style: TextStyle(fontSize: 16)),
+              onTap: () async {
+                if (await canLaunch(changePwURL)) {
+                  await launch(changePwURL);
+                } else {
+                  alertDialogBox(context, AlertType.warning, "Loading Failed",
+                          "Please check your internet connection and try again")
+                      .show();
+                }
+              },
+            ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Logout", style: TextStyle(fontSize: 16)),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+              onTap: () async {
+                Response response = await get(Uri.parse(logoutURL), headers: {
+                  "cookie": "auth-token=" + TokenRolePreferences.getToken()
+                });
+                Map resBody = jsonDecode(response.body);
+                if (response.statusCode == 200) {
+                  await TokenRolePreferences.setToken("clear");
+                  await TokenRolePreferences.setUserRole("clear");
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      (route) => false);
+                } else {
+                  alertDialogBox(context, AlertType.error, "Logout Failed",
+                          "There may be an issue in your internet connection")
+                      .show();
+                }
               },
             ),
             SizedBox(height: 20),

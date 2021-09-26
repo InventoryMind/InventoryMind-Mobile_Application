@@ -11,7 +11,7 @@ class AcceptedRequests extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: LecturerNavigationDrawer(),
-      appBar: getAppBar("Accepted Requests"),
+      appBar: getAppBar(context, "Accepted Requests"),
       body: ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: 5,

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:inventory_mind/login.dart';
+import 'package:inventory_mind/profile_page.dart';
 import 'package:inventory_mind/technical_officer/accept_return.dart';
 import 'package:inventory_mind/technical_officer/add_equipment.dart';
+import 'package:inventory_mind/technical_officer/barcode_scanner.dart';
 import 'package:inventory_mind/technical_officer/remove_equipment.dart';
 import 'package:inventory_mind/widgets/widgets.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:convert';
+import '../../token_role_preferences.dart';
+import '../../urls.dart';
 import '../transfer_equipment.dart';
 
 class TONavigationDrawer extends StatelessWidget {
@@ -31,13 +38,44 @@ class TONavigationDrawer extends StatelessWidget {
                 context, TransferEquipment()),
             buildNavItem("Returned Equipment", Icons.assignment_return_rounded,
                 context, AcceptReturn()),
+            buildNavItem(
+                "Barcode Scanner", Icons.camera, context, BarcodeScanner()),
             Divider(thickness: 2),
+            buildNavItem(
+                "Profile Page", Icons.account_circle, context, ProfilePage()),
+            ListTile(
+              leading: Icon(Icons.password),
+              title: Text("Change Password", style: TextStyle(fontSize: 16)),
+              onTap: () async {
+                if (await canLaunch(changePwURL)) {
+                  await launch(changePwURL);
+                } else {
+                  alertDialogBox(context, AlertType.warning, "Loading Failed",
+                          "Please check your internet connection and try again")
+                      .show();
+                }
+              },
+            ),
             ListTile(
               leading: Icon(Icons.logout),
               title: Text("Logout", style: TextStyle(fontSize: 16)),
-              onTap: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+              onTap: () async {
+                Response response = await get(Uri.parse(logoutURL), headers: {
+                  "cookie": "auth-token=" + TokenRolePreferences.getToken()
+                });
+                Map resBody = jsonDecode(response.body);
+                if (response.statusCode == 200) {
+                  await TokenRolePreferences.setToken("clear");
+                  await TokenRolePreferences.setUserRole("clear");
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      (route) => false);
+                } else {
+                  alertDialogBox(context, AlertType.error, "Logout Failed",
+                          "There may be an issue in your internet connection")
+                      .show();
+                }
               },
             ),
             SizedBox(height: 20),

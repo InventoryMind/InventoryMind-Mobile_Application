@@ -17,12 +17,11 @@ class _AcceptReturnState extends State<AcceptReturn> {
   List<bool> _selected = [];
   bool _successful = true;
 
-  String? _barcode;
   void _scanBarcode() async {
     await FlutterBarcodeScanner.scanBarcode(
             "#FFFF00", "Cancel", true, ScanMode.BARCODE)
         .then((data) => setState(() {
-              if (_idList.contains(data)) {
+              if ((data != "-1") && (_idList.contains(data))) {
                 _selected[_idList.indexOf(data)] = true;
               }
               _selected[_idList.indexOf("12345")] = true;
@@ -33,7 +32,7 @@ class _AcceptReturnState extends State<AcceptReturn> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: TONavigationDrawer(),
-      appBar: getAppBar("Returned Equipment"),
+      appBar: getAppBar(context, "Returned Equipment"),
       body: SingleChildScrollView(
         child: Container(
           margin: EdgeInsets.all(20),
