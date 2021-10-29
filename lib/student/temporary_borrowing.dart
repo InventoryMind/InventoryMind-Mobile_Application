@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 class TemporaryBorrowing extends StatefulWidget {
   const TemporaryBorrowing({Key? key}) : super(key: key);

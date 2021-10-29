@@ -4,14 +4,14 @@ import 'package:inventory_mind/student/borrowing_history.dart';
 import 'package:inventory_mind/student/borrowing_request.dart';
 import 'package:inventory_mind/student/request_history.dart';
 import 'package:inventory_mind/student/temporary_borrowing.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
-import '../../login.dart';
-import '../../profile_page.dart';
-import '../../token_role_preferences.dart';
-import '../../urls.dart';
+import '../../common/login.dart';
+import '../../common/profile_page.dart';
+import '../../others/token_role_preferences.dart';
+import '../../others/urls.dart';
 
 class StudentNavigationDrawer extends StatelessWidget {
   const StudentNavigationDrawer({Key? key}) : super(key: key);

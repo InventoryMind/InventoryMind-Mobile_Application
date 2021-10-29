@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/others/input_validator.dart';
 import 'package:inventory_mind/widgets/header_widget.dart';
 import 'package:inventory_mind/widgets/theme_helper.dart';
 
@@ -91,27 +92,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           decoration:
                               ThemeHelper().textInputDecoration("Email"),
                           keyboardType: TextInputType.emailAddress,
-                          validator: (val) {
-                            if ((val!.isEmpty) ||
-                                !RegExp(r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$")
-                                    .hasMatch(val)) {
-                              return "Enter a valid email address";
-                            }
-                            return null;
-                          },
+                          validator: InputValidator.validateEmail,
                         ),
                         SizedBox(height: 20.0),
                         TextFormField(
                           decoration: ThemeHelper()
                               .textInputDecoration("Contact Number (WhatsApp)"),
                           keyboardType: TextInputType.phone,
-                          validator: (val) {
-                            if ((val!.isEmpty) ||
-                                !RegExp(r"^(\d+)*$").hasMatch(val)) {
-                              return "Enter a valid contact number";
-                            }
-                            return null;
-                          },
+                          validator: InputValidator.validateContactNo,
                         ),
                         SizedBox(height: 20.0),
                         TextFormField(

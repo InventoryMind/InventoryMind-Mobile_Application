@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_mind/constants.dart';
+import 'package:inventory_mind/others/constants.dart';
 import 'package:inventory_mind/lecturer/lecturer_dashboard.dart';
+import 'package:inventory_mind/others/input_validator.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
 import 'package:inventory_mind/widgets/theme_helper.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import '../token_role_preferences.dart';
+import '../others/token_role_preferences.dart';
 
 // ----------------------Common ------------------------------------------------
 PreferredSizeWidget getAppBar(BuildContext context, String title) {
@@ -96,4 +97,16 @@ TextField inputTextField(TextEditingController cont, String label) {
     controller: cont,
     decoration: ThemeHelper().textInputDecoration(label),
   );
+}
+
+TextFormField inputTextFormField(TextEditingController cont, String label) {
+  return TextFormField(
+      controller: cont,
+      decoration: ThemeHelper().textInputDecoration(label),
+      validator: (val) {
+        if (val!.isEmpty) {
+          return "Please enter the $label";
+        }
+        return null;
+      });
 }

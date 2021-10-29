@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+import '../../others/constants.dart';
 
 class LecturerPieChartContainer extends StatelessWidget {
   final List<PieChartSectionData> _pieChartSectionData = [

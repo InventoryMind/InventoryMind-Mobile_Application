@@ -2,22 +2,22 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:inventory_mind/lecturer/lecturer_dashboard.dart';
+import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/student/register.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
-import 'package:inventory_mind/token_role_preferences.dart';
-import 'package:inventory_mind/widgets/header_widget.dart';
+import 'package:inventory_mind/others/token_role_preferences.dart';
 import 'package:inventory_mind/widgets/header_widget_login.dart';
 import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/theme_helper.dart';
-import 'package:inventory_mind/urls.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/others/urls.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'dart:convert';
 import 'package:rflutter_alert/rflutter_alert.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:url_launcher/url_launcher.dart';
 
-import 'constants.dart';
+import '../others/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -58,10 +58,6 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => TODashboard()));
       } else if (_temp == "lecturer") {
-        // Response response2 = await get(Uri.parse(lecDashURL),
-        //     headers: {"cookie": "auth-token=" + kToken});
-        // Map resBody2 = jsonDecode(response2.body);
-        // print(resBody2);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => LecturerDashboard()));
       } else if (_temp == "student") {

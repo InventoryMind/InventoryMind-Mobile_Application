@@ -11,3 +11,7 @@ final String studentRegURL = "$domain/student/register";
 final String stuDashURL = "$domain/student/getDashboardDataM";
 
 final String toDashURL = "$domain/techOff/getDashboardDataM";
+final String getEqTypesURL = "$domain/techOff/getEquipTypes";
+final String addEqURL = "$domain/techOff/addEquipment";
+final String getBorDetailsURL = "$domain/techOff/getBorrowDetails/";
+final String acceptReturnURL = "$domain/techOff/acceptReturn";

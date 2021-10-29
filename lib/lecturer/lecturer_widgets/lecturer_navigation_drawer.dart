@@ -3,16 +3,16 @@ import 'package:http/http.dart';
 import 'package:inventory_mind/lecturer/accepted_requests.dart';
 import 'package:inventory_mind/lecturer/pending_requests.dart';
 import 'package:inventory_mind/lecturer/rejected_requests.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 
-import '../../constants.dart';
-import '../../login.dart';
-import '../../profile_page.dart';
-import '../../token_role_preferences.dart';
-import '../../urls.dart';
+import '../../others/constants.dart';
+import '../../common/login.dart';
+import '../../common/profile_page.dart';
+import '../../others/token_role_preferences.dart';
+import '../../others/urls.dart';
 
 class LecturerNavigationDrawer extends StatelessWidget {
   const LecturerNavigationDrawer({Key? key}) : super(key: key);

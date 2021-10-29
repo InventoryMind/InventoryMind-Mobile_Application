@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:inventory_mind/constants.dart';
+import 'package:inventory_mind/others/constants.dart';
 
 class ThemeHelper {
   InputDecoration textInputDecoration(String labelText) {

@@ -3,7 +3,7 @@ import 'package:inventory_mind/lecturer/lecturer_widgets/lecturer_navigation_dra
 import 'package:inventory_mind/lecturer/request_details.dart';
 import 'package:inventory_mind/student/stu_request_details.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 class RequestHistory extends StatefulWidget {
   const RequestHistory({Key? key}) : super(key: key);

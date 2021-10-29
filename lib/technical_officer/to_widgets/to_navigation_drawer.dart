@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:inventory_mind/login.dart';
-import 'package:inventory_mind/profile_page.dart';
+import 'package:inventory_mind/common/login.dart';
+import 'package:inventory_mind/common/profile_page.dart';
 import 'package:inventory_mind/technical_officer/accept_return.dart';
 import 'package:inventory_mind/technical_officer/add_equipment.dart';
 import 'package:inventory_mind/technical_officer/barcode_scanner.dart';
 import 'package:inventory_mind/technical_officer/remove_equipment.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
-import '../../token_role_preferences.dart';
-import '../../urls.dart';
+import '../../others/token_role_preferences.dart';
+import '../../others/urls.dart';
 import '../transfer_equipment.dart';
 
 class TONavigationDrawer extends StatelessWidget {

@@ -9,3 +9,5 @@ class Lecturer {
     this.totRejected = map["msg"]["data"][2]["count"];
   }
 }
+
+// '{"msg": {"action": true, "data": [{"state": "Pending", "count": 1}, {"state": "Approved", "count": 1}, {"state": "Rejected", "count": 1}]}}'

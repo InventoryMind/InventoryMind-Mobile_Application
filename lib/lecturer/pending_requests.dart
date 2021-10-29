@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/lecturer_widgets/lecturer_navigation_drawer.dart';
 import 'package:inventory_mind/lecturer/request_details.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 class PendingRequests extends StatefulWidget {
   const PendingRequests({Key? key}) : super(key: key);

@@ -1,42 +1,18 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import '../../constants.dart';
+import '../../others/constants.dart';
 
-class TOPieChartContainer extends StatelessWidget {
-  final List<PieChartSectionData> _pieChartSectionData = [
-    PieChartSectionData(
-      value: 10,
-      color: Colors.yellow,
-      showTitle: false,
-    ),
-    PieChartSectionData(
-      value: 12,
-      color: Colors.deepOrange,
-      showTitle: false,
-    ),
-    PieChartSectionData(
-      value: 5,
-      color: Colors.red,
-      showTitle: false,
-    ),
-    PieChartSectionData(
-      value: 5,
-      color: Colors.purpleAccent,
-      showTitle: false,
-    ),
-    PieChartSectionData(
-      value: 5,
-      color: Colors.blue,
-      showTitle: false,
-    ),
-    PieChartSectionData(
-      value: 5,
-      color: Colors.green,
-      showTitle: false,
-    ),
-  ];
+class TOPieChartContainer extends StatefulWidget {
+  late final List data;
+  TOPieChartContainer({required this.data});
 
-  Widget _requestDetailCard(IconData icon, Color color, String title, int val) {
+  @override
+  _TOPieChartContainerState createState() => _TOPieChartContainerState();
+}
+
+class _TOPieChartContainerState extends State<TOPieChartContainer> {
+  Widget _requestDetailCard(
+      IconData icon, Color color, String title, dynamic val) {
     return Card(
       color: kSecondaryColor,
       margin: EdgeInsets.all(5),
@@ -74,24 +50,56 @@ class TOPieChartContainer extends StatelessWidget {
             height: 215,
             child: PieChart(
               PieChartData(
-                sections: _pieChartSectionData,
+                sections: [
+                  PieChartSectionData(
+                    value: double.parse(widget.data[4]["count"].toString()),
+                    color: Colors.yellow,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[2]["count"].toString()),
+                    color: Colors.deepOrange,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[5]["count"].toString()),
+                    color: Colors.red,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[3]["count"].toString()),
+                    color: Colors.purpleAccent,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[1]["count"].toString()),
+                    color: Colors.blue,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[0]["count"].toString()),
+                    color: Colors.green,
+                    showTitle: false,
+                  ),
+                ],
                 centerSpaceRadius: 50,
                 // sectionsSpace: 0,
                 // startDegreeOffset: 90,
               ),
             ),
           ),
-          _requestDetailCard(
-              Icons.check_circle, Colors.green, "Available Equipment", 10),
-          _requestDetailCard(
-              Icons.timelapse_rounded, Colors.blue, "Requested Equipment", 10),
+          _requestDetailCard(Icons.check_circle, Colors.green,
+              "Available Equipment", widget.data[0]["count"]),
+          _requestDetailCard(Icons.timelapse_rounded, Colors.blue,
+              "Requested Equipment", widget.data[1]["count"]),
           _requestDetailCard(Icons.refresh_rounded, Colors.deepOrange,
-              "Temporarily Borrowed", 10),
-          _requestDetailCard(
-              Icons.forward, Colors.purpleAccent, "Borrowed Equipment", 10),
+              "Temporarily Borrowed", widget.data[2]["count"]),
+          _requestDetailCard(Icons.forward, Colors.purpleAccent,
+              "Borrowed Equipment", widget.data[3]["count"]),
           _requestDetailCard(Icons.report_problem_rounded, Colors.yellow,
-              "Not Usable Equipment", 20),
-          _requestDetailCard(Icons.cancel, Colors.red, "Removed Equipment", 5),
+              "Not Usable Equipment", widget.data[4]["count"]),
+          _requestDetailCard(Icons.cancel, Colors.red, "Removed Equipment",
+              widget.data[5]["count"]),
         ],
       ),
     );

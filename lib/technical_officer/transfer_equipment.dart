@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
-import '../constants.dart';
+import '../others/constants.dart';
 
 class TransferEquipment extends StatefulWidget {
   const TransferEquipment({Key? key}) : super(key: key);

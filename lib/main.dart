@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/providers/user_provider.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
-import 'package:inventory_mind/token_role_preferences.dart';
+import 'package:inventory_mind/others/token_role_preferences.dart';
 import 'package:jwt_decode/jwt_decode.dart';
-import 'constants.dart';
+import 'package:provider/provider.dart';
+import 'others/constants.dart';
 import 'lecturer/lecturer_dashboard.dart';
-import 'login.dart';
+import 'common/login.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await TokenRolePreferences.init();
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (_) => UserProvider(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -44,8 +49,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: kBgColor,
         canvasColor: kSecondaryColor,
-        // textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
-        //     .apply(bodyColor: Colors.white),
       ),
       home: _decide(),
     );

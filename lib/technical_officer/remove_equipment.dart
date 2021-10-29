@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:inventory_mind/providers/user_provider.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
+import 'package:provider/provider.dart';
 
 class RemoveEquipment extends StatefulWidget {
   const RemoveEquipment({Key? key}) : super(key: key);
@@ -21,6 +23,12 @@ class _RemoveEquipmentState extends State<RemoveEquipment> {
               }
             }));
   }
+
+  // Future<String> _removeEq(String name, String typeId) async {
+  //   Map resBody = await postReqWithBody(
+  //       Client(), addEqURL, {"name": name, "typeId": typeId});
+  //   return resBody["eqId"].toString();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +53,6 @@ class _RemoveEquipmentState extends State<RemoveEquipment> {
                             EdgeInsets.symmetric(vertical: 5, horizontal: 20),
                         child: Text("Equipment ID: $_barcode"),
                         decoration: BoxDecoration(
-                          // color: kSecondaryColor,
                           border: Border.all(color: Colors.grey, width: 1),
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -53,11 +60,15 @@ class _RemoveEquipmentState extends State<RemoveEquipment> {
                 SizedBox(height: 20.0),
                 _barcode == null
                     ? Container()
-                    : ElevatedButton(
-                        child: Text("Remove Equipment"),
-                        style:
-                            ElevatedButton.styleFrom(primary: Colors.blue[800]),
-                        onPressed: () {},
+                    : Consumer<UserProvider>(
+                        builder: (context, userProvider, _) => ElevatedButton(
+                          child: Text("Remove Equipment"),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.blue[800]),
+                          onPressed: () {
+                            userProvider.removeEquipment();
+                          },
+                        ),
                       ),
               ],
             ),

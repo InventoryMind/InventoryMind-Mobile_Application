@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/responded_details.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 import 'lecturer_widgets/lecturer_navigation_drawer.dart';
 

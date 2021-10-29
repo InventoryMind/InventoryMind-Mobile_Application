@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/widgets/header_widget.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

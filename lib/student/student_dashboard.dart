@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:inventory_mind/student/stu_request_details.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/calendar.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
-import '../constants.dart';
+import '../others/constants.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({Key? key}) : super(key: key);

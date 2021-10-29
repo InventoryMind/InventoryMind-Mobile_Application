@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
-import 'package:inventory_mind/widgets/widgets.dart';
+import 'package:inventory_mind/widgets/widget_methods.dart';
 
 class StuRequestDetails extends StatelessWidget {
   const StuRequestDetails({Key? key}) : super(key: key);
