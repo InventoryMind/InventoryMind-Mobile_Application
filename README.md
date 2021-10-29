@@ -1,4 +1,4 @@
-# inventory_mind
+# InventoryMind
 
 InventoryMind
 
