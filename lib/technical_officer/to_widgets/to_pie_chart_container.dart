@@ -83,8 +83,6 @@ class _TOPieChartContainerState extends State<TOPieChartContainer> {
                   ),
                 ],
                 centerSpaceRadius: 50,
-                // sectionsSpace: 0,
-                // startDegreeOffset: 90,
               ),
             ),
           ),

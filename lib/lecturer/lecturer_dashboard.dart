@@ -2,9 +2,12 @@ import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/others/urls.dart';
+import 'package:inventory_mind/providers/user_provider.dart';
 import 'package:inventory_mind/widgets/calendar.dart';
 import 'package:inventory_mind/lecturer/lecturer_widgets/lecturer_navigation_drawer.dart';
+import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
+import 'package:provider/provider.dart';
 import 'lecturer_widgets/lecturer_pie_chart_container.dart';
 
 class LecturerDashboard extends StatefulWidget {
@@ -13,15 +16,9 @@ class LecturerDashboard extends StatefulWidget {
 }
 
 class _LecturerDashboardState extends State<LecturerDashboard> {
-  Future<void> _loadData() async {
-    Map resBody = await getReq(Client(), lecDashURL);
-    print(resBody);
-  }
-
-  @override
-  void initState() {
-    _loadData();
-    super.initState();
+  Future<List> _loadData(BuildContext context) async {
+    Map resBody = await getReq(context, Client(), lecDashURL);
+    return resBody["msg"]["data"];
   }
 
   @override
@@ -29,14 +26,28 @@ class _LecturerDashboardState extends State<LecturerDashboard> {
     return Scaffold(
       drawer: LecturerNavigationDrawer(),
       appBar: getAppBar(context, "Dashboard"),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Calender(),
-            LecturerPieChartContainer(),
-          ],
-        ),
-      ),
+      body: FutureBuilder(
+          future: _loadData(context),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return Loading();
+            } else {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Calender(),
+                    Consumer<UserProvider>(
+                      builder: (context, userProvider, _) {
+                        userProvider.lecDashboardData = snapshot.data as List;
+                        return LecturerPieChartContainer(
+                            data: userProvider.lecDashboardData);
+                      },
+                    ),
+                  ],
+                ),
+              );
+            }
+          }),
     );
   }
 }

@@ -16,8 +16,8 @@ class TODashboard extends StatefulWidget {
 }
 
 class _TODashboardState extends State<TODashboard> {
-  Future<List> _loadData() async {
-    Map resBody = await getReq(Client(), toDashURL);
+  Future<List> _loadData(BuildContext context) async {
+    Map resBody = await getReq(context, Client(), toDashURL);
     return resBody["msg"];
   }
 
@@ -27,7 +27,7 @@ class _TODashboardState extends State<TODashboard> {
       drawer: TONavigationDrawer(),
       appBar: getAppBar(context, "Dashboard"),
       body: FutureBuilder(
-        future: _loadData(),
+        future: _loadData(context),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return Loading();
@@ -37,7 +37,7 @@ class _TODashboardState extends State<TODashboard> {
                 children: [
                   Calender(),
                   Consumer<UserProvider>(
-                    builder: (context, userProvider, child) {
+                    builder: (context, userProvider, _) {
                       userProvider.tODashboardData = snapshot.data as List;
                       return TOPieChartContainer(
                           data: userProvider.tODashboardData);

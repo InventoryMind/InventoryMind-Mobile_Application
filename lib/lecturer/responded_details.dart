@@ -1,11 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_mind/others/common_methods.dart';
+import 'package:inventory_mind/others/urls.dart';
+import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
+import 'package:http/http.dart';
 
-import 'lecturer_widgets/lecturer_navigation_drawer.dart';
+class RespondedDetails extends StatefulWidget {
+  final String reqId;
+  const RespondedDetails({Key? key, required this.reqId}) : super(key: key);
 
-class RespondedDetails extends StatelessWidget {
-  const RespondedDetails({Key? key}) : super(key: key);
+  @override
+  _RespondedDetailsState createState() => _RespondedDetailsState();
+}
+
+class _RespondedDetailsState extends State<RespondedDetails> {
+  Map? _data;
+
+  Future<Map> _loadData(BuildContext context) async {
+    Map resBody = await getReq(context, Client(), lecViewReqURL + widget.reqId);
+    return resBody["msg"];
+  }
 
   Widget _detailedCard(IconData icon, String title, String subtitle) {
     return Card(
@@ -29,7 +44,7 @@ class RespondedDetails extends StatelessWidget {
     );
   }
 
-  Widget _eqTable() {
+  Widget _eqTable(Map _types) {
     List<TableRow> _rows = [
       TableRow(
         children: [
@@ -39,17 +54,17 @@ class RespondedDetails extends StatelessWidget {
         ],
       )
     ];
-    for (int i = 0; i < 3; i++) {
+    _types.forEach((key, value) {
       _rows.add(
         TableRow(
           children: [
-            TableCell(child: Center(child: Text(i.toString()))),
-            TableCell(child: Center(child: Text(i.toString()))),
-            TableCell(child: Center(child: Text(i.toString()))),
+            TableCell(child: Center(child: Text(value["type"]))),
+            TableCell(child: Center(child: Text(value["brand"]))),
+            TableCell(child: Center(child: Text(value["count"].toString()))),
           ],
         ),
       );
-    }
+    });
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Table(
@@ -64,32 +79,45 @@ class RespondedDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getAppBar(context, "Request Details"),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: <Widget>[
-            _detailedCard(Icons.code, "96587", "Request ID"),
-            _detailedCard(Icons.person, "Pasindu Udawatta", "Student's Name"),
-            _detailedCard(
-                Icons.account_circle_outlined, "180652A", "Index No."),
-            _detailedCard(Icons.next_plan, "2021/10/10", "Date of Borrowing"),
-            _detailedCard(
-                Icons.keyboard_return, "2021/10/15", "Date of Returning"),
-            _detailedCard(Icons.comment, "For a Guest Lecture", "Reason"),
-            Card(
-              child: ListTile(
-                leading: IconButton(
-                    icon: Icon(Icons.format_list_bulleted), onPressed: () {}),
-                title: _eqTable(),
-                subtitle: Container(
-                  child: Text("Equipment Details"),
-                  margin: EdgeInsets.only(bottom: 10),
+      body: FutureBuilder(
+          future: _loadData(context),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return Loading();
+            } else {
+              _data = snapshot.data as Map;
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: ListView(
+                  children: <Widget>[
+                    _detailedCard(
+                        Icons.code, _data!["request_id"], "Request ID"),
+                    _detailedCard(
+                        Icons.person, _data!["student"], "Student's Name"),
+                    _detailedCard(Icons.account_circle_outlined,
+                        _data!["student_id"], "Index No."),
+                    _detailedCard(Icons.next_plan, _data!["date_of_borrowing"],
+                        "Date of Borrowing"),
+                    _detailedCard(Icons.keyboard_return,
+                        _data!["date_of_returning"], "Date of Returning"),
+                    _detailedCard(Icons.comment, _data!["reason"], "Reason"),
+                    Card(
+                      child: ListTile(
+                        leading: IconButton(
+                            icon: Icon(Icons.format_list_bulleted),
+                            onPressed: () {}),
+                        title: _eqTable(_data!["types"]),
+                        subtitle: Container(
+                          child: Text("Equipment Details"),
+                          margin: EdgeInsets.only(bottom: 10),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
+              );
+            }
+          }),
     );
   }
 }

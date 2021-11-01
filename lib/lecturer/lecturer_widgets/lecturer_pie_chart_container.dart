@@ -2,29 +2,18 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../others/constants.dart';
 
-class LecturerPieChartContainer extends StatelessWidget {
-  final List<PieChartSectionData> _pieChartSectionData = [
-    PieChartSectionData(
-      value: 10,
-      color: Colors.blue,
-      showTitle: false,
-      radius: 35,
-    ),
-    PieChartSectionData(
-      value: 12,
-      color: Colors.green,
-      showTitle: false,
-      radius: 32,
-    ),
-    PieChartSectionData(
-      value: 5,
-      color: Colors.red,
-      showTitle: false,
-      radius: 29,
-    ),
-  ];
+class LecturerPieChartContainer extends StatefulWidget {
+  late final List data;
+  LecturerPieChartContainer({required this.data});
 
-  Widget _requestDetailCard(IconData icon, Color color, String title, int val) {
+  @override
+  _LecturerPieChartContainerState createState() =>
+      _LecturerPieChartContainerState();
+}
+
+class _LecturerPieChartContainerState extends State<LecturerPieChartContainer> {
+  Widget _requestDetailCard(
+      IconData icon, Color color, String title, dynamic val) {
     return Card(
       color: kSecondaryColor,
       margin: EdgeInsets.all(5),
@@ -62,18 +51,33 @@ class LecturerPieChartContainer extends StatelessWidget {
             height: 215,
             child: PieChart(
               PieChartData(
-                sections: _pieChartSectionData,
+                sections: [
+                  PieChartSectionData(
+                    value: double.parse(widget.data[0]["count"].toString()),
+                    color: Colors.blue,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[1]["count"].toString()),
+                    color: Colors.green,
+                    showTitle: false,
+                  ),
+                  PieChartSectionData(
+                    value: double.parse(widget.data[2]["count"].toString()),
+                    color: Colors.red,
+                    showTitle: false,
+                  ),
+                ],
                 centerSpaceRadius: 50,
-                // sectionsSpace: 0,
-                // startDegreeOffset: 90,
               ),
             ),
           ),
-          _requestDetailCard(
-              Icons.pending, Colors.blue, "Pending Requests", 20),
-          _requestDetailCard(
-              Icons.check_circle, Colors.green, "Approved Requests", 10),
-          _requestDetailCard(Icons.cancel, Colors.red, "Rejected Requests", 5),
+          _requestDetailCard(Icons.pending, Colors.blue, "Pending Requests",
+              widget.data[0]["count"]),
+          _requestDetailCard(Icons.check_circle, Colors.green,
+              "Approved Requests", widget.data[1]["count"]),
+          _requestDetailCard(Icons.cancel, Colors.red, "Rejected Requests",
+              widget.data[2]["count"]),
         ],
       ),
     );

@@ -110,3 +110,12 @@ TextFormField inputTextFormField(TextEditingController cont, String label) {
         return null;
       });
 }
+
+Alert commonErrorAlert(BuildContext context) {
+  return alertDialogBox(
+    context,
+    AlertType.error,
+    "Unsuccessful Request",
+    "Please check your inputs and the internet connection and try again",
+  );
+}

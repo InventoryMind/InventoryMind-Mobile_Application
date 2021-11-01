@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:inventory_mind/lecturer/accepted_requests.dart';
+import 'package:inventory_mind/lecturer/approved_requests.dart';
 import 'package:inventory_mind/lecturer/pending_requests.dart';
 import 'package:inventory_mind/lecturer/rejected_requests.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
-
-import '../../others/constants.dart';
 import '../../common/login.dart';
 import '../../common/profile_page.dart';
 import '../../others/token_role_preferences.dart';

@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:inventory_mind/lecturer/lecturer_dashboard.dart';
-import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/student/register.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
@@ -51,20 +50,12 @@ class _LoginPageState extends State<LoginPage> {
       await TokenRolePreferences.setToken(resBody1["token"]);
       await TokenRolePreferences.setUserRole(_userRole.toString());
       if (_temp == "technical_officer") {
-        // Response response2 = await get(Uri.parse(toDashURL),
-        //     headers: {"cookie": "auth-token=" + kToken});
-        // Map resBody2 = jsonDecode(response2.body);
-        // print(resBody2);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => TODashboard()));
       } else if (_temp == "lecturer") {
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => LecturerDashboard()));
       } else if (_temp == "student") {
-        // Response response2 = await get(Uri.parse(stuDashURL),
-        //     headers: {"cookie": "auth-token=" + kToken});
-        // Map resBody2 = jsonDecode(response2.body);
-        // print(resBody2);
         Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => StudentDashboard()));
       }

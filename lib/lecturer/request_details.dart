@@ -1,11 +1,43 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:inventory_mind/others/common_methods.dart';
+import 'package:inventory_mind/others/urls.dart';
+import 'package:inventory_mind/providers/user_provider.dart';
+import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
+import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
-import 'lecturer_widgets/lecturer_navigation_drawer.dart';
+// ignore: must_be_immutable
+class RequestDetails extends StatefulWidget {
+  final String reqId;
+  const RequestDetails({Key? key, required this.reqId}) : super(key: key);
 
-class RequestDetails extends StatelessWidget {
-  const RequestDetails({Key? key}) : super(key: key);
+  @override
+  _RequestDetailsState createState() => _RequestDetailsState();
+}
+
+class _RequestDetailsState extends State<RequestDetails> {
+  Map? _data;
+
+  Future<Map> _loadData(BuildContext context) async {
+    Map resBody = await getReq(context, Client(), lecViewReqURL + widget.reqId);
+    return resBody["msg"];
+  }
+
+  Future<void> _respond(BuildContext context, String url) async {
+    try {
+      await postReqWithoutBody(Client(), url + widget.reqId);
+      Fluttertoast.showToast(
+        msg: "Successfully Responded",
+        gravity: ToastGravity.BOTTOM,
+      );
+    } catch (e) {
+      throw Exception("Loading Failed");
+    } finally {
+      Navigator.pop(context);
+    }
+  }
 
   Widget _detailedCard(IconData icon, String title, String subtitle) {
     return Card(
@@ -29,7 +61,7 @@ class RequestDetails extends StatelessWidget {
     );
   }
 
-  Widget _eqTable() {
+  Widget _eqTable(Map _types) {
     List<TableRow> _rows = [
       TableRow(
         children: [
@@ -39,17 +71,17 @@ class RequestDetails extends StatelessWidget {
         ],
       )
     ];
-    for (int i = 0; i < 3; i++) {
+    _types.forEach((key, value) {
       _rows.add(
         TableRow(
           children: [
-            TableCell(child: Center(child: Text(i.toString()))),
-            TableCell(child: Center(child: Text(i.toString()))),
-            TableCell(child: Center(child: Text(i.toString()))),
+            TableCell(child: Center(child: Text(value["type"]))),
+            TableCell(child: Center(child: Text(value["brand"]))),
+            TableCell(child: Center(child: Text(value["count"].toString()))),
           ],
         ),
       );
-    }
+    });
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       child: Table(
@@ -63,53 +95,75 @@ class RequestDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // drawer: LecturerNavigationDrawer(),
       appBar: getAppBar(context, "Request Details"),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: <Widget>[
-            _detailedCard(Icons.code, "96587", "Request ID"),
-            _detailedCard(Icons.person, "Pasindu Udawatta", "Student's Name"),
-            _detailedCard(
-                Icons.account_circle_outlined, "180652A", "Index No."),
-            _detailedCard(Icons.next_plan, "2021/10/10", "Date of Borrowing"),
-            _detailedCard(
-                Icons.keyboard_return, "2021/10/15", "Date of Returning"),
-            _detailedCard(Icons.comment, "For a Guest Lecture", "Reason"),
-            Card(
-              child: ListTile(
-                leading: IconButton(
-                    icon: Icon(Icons.format_list_bulleted), onPressed: () {}),
-                title: _eqTable(),
-                subtitle: Container(
-                  child: Text("Equipment Details"),
-                  margin: EdgeInsets.only(bottom: 10),
+      body: FutureBuilder(
+          future: _loadData(context),
+          builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return Loading();
+            } else {
+              _data = snapshot.data as Map;
+              return Padding(
+                padding: const EdgeInsets.all(10),
+                child: ListView(
+                  children: <Widget>[
+                    _detailedCard(
+                        Icons.code, _data!["request_id"], "Request ID"),
+                    _detailedCard(
+                        Icons.person, _data!["student"], "Student's Name"),
+                    _detailedCard(Icons.account_circle_outlined,
+                        _data!["student_id"], "Index No."),
+                    _detailedCard(Icons.next_plan, _data!["date_of_borrowing"],
+                        "Date of Borrowing"),
+                    _detailedCard(Icons.keyboard_return,
+                        _data!["date_of_returning"], "Date of Returning"),
+                    _detailedCard(Icons.comment, _data!["reason"], "Reason"),
+                    Card(
+                      child: ListTile(
+                        leading: IconButton(
+                            icon: Icon(Icons.format_list_bulleted),
+                            onPressed: () {}),
+                        title: _eqTable(_data!["types"]),
+                        subtitle: Container(
+                          child: Text("Equipment Details"),
+                          margin: EdgeInsets.only(bottom: 10),
+                        ),
+                      ),
+                    ),
+                    Consumer<UserProvider>(
+                      builder: (context, userProvider, _) => ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ElevatedButton.icon(
+                              icon: Icon(Icons.check_circle_outline),
+                              label: Text("Approve"),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.green),
+                              onPressed: () {
+                                _respond(context, approveReqURL);
+                                userProvider.approve(widget.reqId);
+                              },
+                            ),
+                            ElevatedButton.icon(
+                              icon: Icon(Icons.block),
+                              label: Text("Reject"),
+                              style:
+                                  ElevatedButton.styleFrom(primary: Colors.red),
+                              onPressed: () {
+                                _respond(context, rejectReqURL);
+                                userProvider.reject(widget.reqId);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ),
-            ListTile(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.check_circle_outline),
-                    label: Text("Approve"),
-                    style: ElevatedButton.styleFrom(primary: Colors.green),
-                    onPressed: () {},
-                  ),
-                  ElevatedButton.icon(
-                    icon: Icon(Icons.block),
-                    label: Text("Reject"),
-                    style: ElevatedButton.styleFrom(primary: Colors.red),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+              );
+            }
+          }),
     );
   }
 }

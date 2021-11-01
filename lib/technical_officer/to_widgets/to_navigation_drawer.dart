@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 import '../../others/token_role_preferences.dart';
 import '../../others/urls.dart';
+import '../change_eq_status.dart';
 import '../transfer_equipment.dart';
 
 class TONavigationDrawer extends StatelessWidget {
@@ -38,6 +39,8 @@ class TONavigationDrawer extends StatelessWidget {
                 context, TransferEquipment()),
             buildNavItem("Returned Equipment", Icons.assignment_return_rounded,
                 context, AcceptReturn()),
+            buildNavItem("Change Eq. Status", Icons.compare_arrows, context,
+                ChangeStatus()),
             buildNavItem(
                 "Barcode Scanner", Icons.camera, context, BarcodeScanner()),
             Divider(thickness: 2),
