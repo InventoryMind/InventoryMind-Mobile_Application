@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/responded_details.dart';
 import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/others/urls.dart';
-import 'package:inventory_mind/providers/user_provider.dart';
+import 'package:inventory_mind/others/user_provider.dart';
 import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:provider/provider.dart';

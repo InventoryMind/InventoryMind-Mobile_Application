@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/lecturer/pending_requests.dart';
-import 'package:inventory_mind/providers/user_provider.dart';
+import 'package:inventory_mind/others/user_provider.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
 import 'package:inventory_mind/others/token_role_preferences.dart';

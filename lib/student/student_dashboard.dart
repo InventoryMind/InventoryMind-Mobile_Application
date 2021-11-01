@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/others/urls.dart';
-import 'package:inventory_mind/student/stu_request_details.dart';
 import 'package:inventory_mind/student/student_widgets/student_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/calendar.dart';
 import 'package:inventory_mind/widgets/loading.dart';
@@ -9,6 +8,7 @@ import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:http/http.dart';
 
 import '../others/constants.dart';
+import 'borrowing_details.dart';
 
 class StudentDashboard extends StatefulWidget {
   const StudentDashboard({Key? key}) : super(key: key);
@@ -80,7 +80,7 @@ class _StudentDashboardState extends State<StudentDashboard> {
                                       ),
                                       child: ListTile(
                                         leading: TextButton(
-                                          child: Text(_data![index]["requestId"]
+                                          child: Text(_data![index]["borrowId"]
                                               .toString()),
                                           onPressed: () {},
                                         ),
@@ -92,11 +92,20 @@ class _StudentDashboardState extends State<StudentDashboard> {
                                           icon: Icon(
                                               Icons.remove_red_eye_rounded),
                                           onPressed: () {
-                                            // Navigator.push(
-                                            //     context,
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             StuRequestDetails()));
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BorrowingDetails(
+                                                  borrowId: _data![index]
+                                                          ["borrowId"]
+                                                      .toString(),
+                                                  type: _data![index]["type"],
+                                                  status: _data![index]
+                                                      ["state"],
+                                                ),
+                                              ),
+                                            );
                                           },
                                         ),
                                       ),

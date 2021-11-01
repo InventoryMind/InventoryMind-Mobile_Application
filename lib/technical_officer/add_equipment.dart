@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/others/urls.dart';
-import 'package:inventory_mind/providers/user_provider.dart';
+import 'package:inventory_mind/others/user_provider.dart';
 import 'package:inventory_mind/technical_officer/to_widgets/to_navigation_drawer.dart';
 import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';

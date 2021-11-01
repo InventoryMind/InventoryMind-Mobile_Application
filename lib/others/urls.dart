@@ -18,12 +18,15 @@ final String lecProfileURL = "$domain/lecturer/getUserDetails";
 
 // ---------------------------Student-------------------------------------------
 final String stuDashURL = "$domain/student/getDashboardDataM";
+final String stuGetLabsURL = "$domain/student/getLabList";
+final String stuGetLecsURL = "$domain/student/getLecturerList";
 
 final String getAllReqsURL = "$domain/student/viewAllRequest";
 final String stuViewReqURL = "$domain/student/viewRequest/"; // "/:reqId"
-final String viewBorHistURL = "$domain/student/viewAllRequest";
-
+final String viewBorHistURL = "$domain/student/viewBorrowedHistory";
+final String stuViewBorURL = "$domain/student/viewBorrow";
 final String stuProfileURL = "$domain/student/getUserDetails";
+
 final String studentRegURL = "$domain/student/register";
 
 // ---------------------------Technical Officer---------------------------------
@@ -31,7 +34,7 @@ final String toDashURL = "$domain/techOff/getDashboardDataM";
 final String getEqTypesURL = "$domain/techOff/getEquipTypes";
 final String addEqURL = "$domain/techOff/addEquipment";
 final String removeEqURL = "$domain/techOff/removeEquipment/"; // "/:eqId"
-final String getLabsURL = "$domain/techOff/getLabs";
+final String toGetLabsURL = "$domain/techOff/getLabs";
 final String transferEqURL = "$domain/techOff/transferEquipment";
 final String getBorDetailsURL = "$domain/techOff/getBorrowDetails/";
 final String acceptReturnURL = "$domain/techOff/acceptReturn";

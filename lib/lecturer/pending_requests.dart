@@ -3,7 +3,7 @@ import 'package:inventory_mind/lecturer/lecturer_widgets/lecturer_navigation_dra
 import 'package:inventory_mind/lecturer/request_details.dart';
 import 'package:inventory_mind/others/common_methods.dart';
 import 'package:inventory_mind/others/urls.dart';
-import 'package:inventory_mind/providers/user_provider.dart';
+import 'package:inventory_mind/others/user_provider.dart';
 import 'package:inventory_mind/widgets/loading.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:http/http.dart';
