@@ -63,6 +63,7 @@ class _AcceptReturnState extends State<AcceptReturn> {
     } else {
       type = "temporary";
     }
+    // setState(() => _loading = true);
     try {
       await postReqWithBody(
           Client(), acceptReturnURL, {"borrowId": borrowId, "type": type});
@@ -182,7 +183,7 @@ class _AcceptReturnState extends State<AcceptReturn> {
                               alertDialogBox(
                                       context,
                                       AlertType.warning,
-                                      "Request Unsuccessful",
+                                      "Incomplete Return",
                                       "Every equipment should be returned to complete the request.")
                                   .show();
                             }

@@ -20,14 +20,14 @@ final String lecProfileURL = "$domain/lecturer/getUserDetails";
 final String stuDashURL = "$domain/student/getDashboardDataM";
 final String stuGetLabsURL = "$domain/student/getLabList";
 final String stuGetLecsURL = "$domain/student/getLecturerList";
-
+final String borReqURL = "$domain/student/makeBorrowRequest";
+final String tempBorURL = "$domain/student/borrowTemporarily";
 final String getAllReqsURL = "$domain/student/viewAllRequest";
 final String stuViewReqURL = "$domain/student/viewRequest/"; // "/:reqId"
 final String viewBorHistURL = "$domain/student/viewBorrowedHistory";
 final String stuViewBorURL = "$domain/student/viewBorrow";
 final String stuProfileURL = "$domain/student/getUserDetails";
-
-final String studentRegURL = "$domain/student/register";
+final String stuRegURL = "$domain/student/register";
 
 // ---------------------------Technical Officer---------------------------------
 final String toDashURL = "$domain/techOff/getDashboardDataM";

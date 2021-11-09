@@ -8,7 +8,6 @@ import 'package:inventory_mind/technical_officer/barcode_scanner.dart';
 import 'package:inventory_mind/technical_officer/remove_equipment.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 import '../../others/token_role_preferences.dart';
 import '../../others/urls.dart';
@@ -49,14 +48,10 @@ class TONavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.password),
               title: Text("Change Password", style: TextStyle(fontSize: 16)),
-              onTap: () async {
-                if (await canLaunch(changePwURL)) {
-                  await launch(changePwURL);
-                } else {
-                  alertDialogBox(context, AlertType.warning, "Loading Failed",
-                          "Please check your internet connection and try again")
-                      .show();
-                }
+              onTap: () {
+                alertDialogBox(context, AlertType.info, "Information",
+                        "Please use the web application to change password")
+                    .show();
               },
             ),
             ListTile(

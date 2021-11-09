@@ -13,8 +13,6 @@ import 'package:inventory_mind/others/urls.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'dart:convert';
 import 'package:rflutter_alert/rflutter_alert.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:url_launcher/url_launcher.dart';
 
 import '../others/constants.dart';
 
@@ -157,18 +155,13 @@ class _LoginPageState extends State<LoginPage> {
                                     margin: EdgeInsets.fromLTRB(10, 0, 10, 20),
                                     alignment: Alignment.topRight,
                                     child: GestureDetector(
-                                      onTap: () async {
-                                        if (await canLaunch(
-                                            "https://google.com")) {
-                                          await launch("https://google.com");
-                                        } else {
-                                          alertDialogBox(
-                                                  context,
-                                                  AlertType.warning,
-                                                  "Loading Failed",
-                                                  "Please check your internet connection and try again")
-                                              .show();
-                                        }
+                                      onTap: () {
+                                        alertDialogBox(
+                                                context,
+                                                AlertType.info,
+                                                "Information",
+                                                "Please use the web application to proceed")
+                                            .show();
                                       },
                                       child: Text(
                                         "Forgot Password ?",
@@ -195,7 +188,9 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                       ),
                                       onPressed: () async {
-                                        if (_formKey.currentState!.validate()) {
+                                        if ((_formKey.currentState!
+                                                .validate()) &&
+                                            (_userRole != null)) {
                                           await _login(_emailCont.text,
                                               _pwCont.text, context);
                                         }

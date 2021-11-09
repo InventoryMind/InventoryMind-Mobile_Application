@@ -6,7 +6,6 @@ import 'package:inventory_mind/student/request_history.dart';
 import 'package:inventory_mind/student/temporary_borrowing.dart';
 import 'package:inventory_mind/widgets/widget_methods.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 import '../../common/login.dart';
 import '../../common/profile_page.dart';
@@ -43,14 +42,10 @@ class StudentNavigationDrawer extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.password),
               title: Text("Change Password", style: TextStyle(fontSize: 16)),
-              onTap: () async {
-                if (await canLaunch(changePwURL)) {
-                  await launch(changePwURL);
-                } else {
-                  alertDialogBox(context, AlertType.warning, "Loading Failed",
-                          "Please check your internet connection and try again")
-                      .show();
-                }
+              onTap: () {
+                alertDialogBox(context, AlertType.info, "Information",
+                        "Please use the web application to change password")
+                    .show();
               },
             ),
             ListTile(
