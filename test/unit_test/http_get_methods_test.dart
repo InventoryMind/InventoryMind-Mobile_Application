@@ -12,6 +12,7 @@ void main() async {
   String _url = "URL";
   WidgetsFlutterBinding.ensureInitialized();
   await TokenRolePreferences.init();
+
   group("HTTP GET", () {
     test("returns a Map, if successful", () async {
       final client = MockClient();

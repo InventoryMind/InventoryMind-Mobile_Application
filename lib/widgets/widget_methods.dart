@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_mind/others/constants.dart';
 import 'package:inventory_mind/lecturer/lecturer_dashboard.dart';
-import 'package:inventory_mind/others/input_validator.dart';
 import 'package:inventory_mind/student/student_dashboard.dart';
 import 'package:inventory_mind/technical_officer/to_dashboard.dart';
 import 'package:inventory_mind/widgets/theme_helper.dart';

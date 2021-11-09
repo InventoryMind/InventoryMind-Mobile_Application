@@ -12,7 +12,8 @@ void main() async {
   String _url = "URL";
   WidgetsFlutterBinding.ensureInitialized();
   await TokenRolePreferences.init();
-  group("HTTP POST without Header or Body", () {
+
+  group("HTTP POST without Body", () {
     test("returns a Map, if successful", () async {
       final client = MockClient();
       when(client.post(Uri.parse(_url), headers: {
@@ -51,6 +52,44 @@ void main() async {
         "cookie": "auth-token=" + TokenRolePreferences.getToken()
       })).thenAnswer((_) async => http.Response('{}', 500));
       expect(postReqWithoutBody(client, _url), throwsException);
+    });
+  });
+
+  group("HTTP POST without Header", () {
+    Map _body = {};
+    test("returns a Map, if successful", () async {
+      final client = MockClient();
+      when(client.post(Uri.parse(_url), body: {}))
+          .thenAnswer((_) async => http.Response('{}', 200));
+      expect(await postReqWithoutToken(client, _url, _body), isA<Map>());
+    });
+
+    test("throws an exception, if failed", () async {
+      final client = MockClient();
+      when(client.post(Uri.parse(_url), body: {}))
+          .thenAnswer((_) async => http.Response('{}', 201));
+      expect(postReqWithoutToken(client, _url, _body), throwsException);
+    });
+
+    test("throws an exception, if token is invalid", () async {
+      final client = MockClient();
+      when(client.post(Uri.parse(_url), body: {}))
+          .thenAnswer((_) async => http.Response('{}', 400));
+      expect(postReqWithoutToken(client, _url, _body), throwsException);
+    });
+
+    test("throws an exception, if unauthorized", () async {
+      final client = MockClient();
+      when(client.post(Uri.parse(_url), body: {}))
+          .thenAnswer((_) async => http.Response('{}', 401));
+      expect(postReqWithoutToken(client, _url, _body), throwsException);
+    });
+
+    test("throws an exception, if connection error", () async {
+      final client = MockClient();
+      when(client.post(Uri.parse(_url), body: {}))
+          .thenAnswer((_) async => http.Response('{}', 500));
+      expect(postReqWithoutToken(client, _url, _body), throwsException);
     });
   });
 }

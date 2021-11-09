@@ -35,10 +35,6 @@ Future<Map> postReqWithBody(Client client, String url, Map body) async {
   if (response.statusCode == 200) {
     return jsonDecode(response.body);
   } else {
-    Fluttertoast.showToast(
-      msg: "Something Went Wrong! Please Try Again",
-      gravity: ToastGravity.BOTTOM,
-    );
     throw Exception("Loading Failed");
   }
 }
@@ -56,10 +52,6 @@ Future<Map> postReqWithEncodedBody(Client client, String url, Map body) async {
   if (response.statusCode == 200) {
     return jsonDecode(response.body);
   } else {
-    Fluttertoast.showToast(
-      msg: "Something Went Wrong! Please Try Again",
-      gravity: ToastGravity.BOTTOM,
-    );
     throw Exception("Loading Failed");
   }
 }
@@ -69,10 +61,6 @@ Future<Map> postReqWithoutToken(Client client, String url, Map body) async {
   if (response.statusCode == 200) {
     return jsonDecode(response.body);
   } else {
-    Fluttertoast.showToast(
-      msg: "Something Went Wrong! Please Try Again",
-      gravity: ToastGravity.BOTTOM,
-    );
     throw Exception("Loading Failed");
   }
 }
