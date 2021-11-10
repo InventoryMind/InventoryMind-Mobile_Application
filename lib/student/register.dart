@@ -86,6 +86,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               SizedBox(height: 40),
                               TextFormField(
+                                key: Key("Index"),
                                 controller: _indCont,
                                 decoration: ThemeHelper()
                                     .textInputDecoration("Index Number"),
@@ -98,6 +99,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               SizedBox(height: 20),
                               TextFormField(
+                                key: Key("FName"),
                                 controller: _fnCont,
                                 decoration: ThemeHelper()
                                     .textInputDecoration('First Name'),
@@ -110,6 +112,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               SizedBox(height: 20),
                               TextFormField(
+                                key: Key("LName"),
                                 controller: _lnCont,
                                 decoration: ThemeHelper()
                                     .textInputDecoration('Last Name'),
@@ -122,6 +125,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               SizedBox(height: 20.0),
                               TextFormField(
+                                key: Key("Email"),
                                 controller: _emailCont,
                                 decoration:
                                     ThemeHelper().textInputDecoration("Email"),
@@ -130,6 +134,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               ),
                               SizedBox(height: 20.0),
                               TextFormField(
+                                key: Key("Contact"),
                                 controller: _numCont,
                                 decoration: ThemeHelper().textInputDecoration(
                                     "Contact Number (WhatsApp)"),

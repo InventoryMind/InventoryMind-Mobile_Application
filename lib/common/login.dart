@@ -125,6 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   SizedBox(height: 20.0),
                                   TextFormField(
+                                    key: Key("Email"),
                                     controller: _emailCont,
                                     decoration: ThemeHelper()
                                         .textInputDecoration("Email"),
@@ -139,6 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   SizedBox(height: 20.0),
                                   TextFormField(
+                                    key: Key("Password"),
                                     controller: _pwCont,
                                     decoration: ThemeHelper()
                                         .textInputDecoration("Password"),
