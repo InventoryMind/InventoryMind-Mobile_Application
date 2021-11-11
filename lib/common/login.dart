@@ -101,6 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 20),
                                     child: DropdownButton(
+                                      key: Key("UserRoleDD"),
                                       value: _userRole,
                                       hint: Text("User Role"),
                                       items: _roles.map((val) {
