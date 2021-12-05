@@ -10,8 +10,8 @@ void main() async {
   await TokenRolePreferences.init();
 
   testWidgets("Lecturer", (WidgetTester tester) async {
-    // await tester.pumpWidget(MaterialApp(home: LoginPage()));
-    app.main();
+    // await t app.main()ester.pumpWidget(MaterialApp(home: LoginPage()));
+    ;
     await tester.pumpAndSettle();
 
     final dropDownFinder = find.byKey(Key("UserRoleDD"));
